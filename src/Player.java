@@ -9,24 +9,28 @@ public class Player {
         this.y = y;
     }
     public void move(int direction) {
+        final int SPEED = 50;
         switch (direction) {
             case 0:
-                y--;
+                y -= SPEED;
                 break;
             case 1:
-                x++;
+                x += SPEED;
                 break;
             case 2:
-                y++;
+                y += SPEED;
                 break;
             case 3:
-                x--;
+                x -= SPEED;
                 break;
         }
     }
     public void draw(Graphics g) {
         g.setColor(Color.RED);
         g.fillRect(x, y, 50, 50);
+    }
+    public void setLane(int lane) {
+        this.y = lane * 200 + 50;
     }
 
     public int getX() {
