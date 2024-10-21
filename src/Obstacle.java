@@ -8,11 +8,17 @@ public class Obstacle {
         this.y = y;
         this.lane = lane;
     }
-    public void update() {
-
+    public void update(int speed) {
+        x -= speed;
+        if (x < 0) {
+            x = 800;
+        }
     }
     public void draw(Graphics g) {
         g.setColor(Color.BLUE);
         g.fillRect(x, y, 50, 50);
+    }
+    private void setLane(int lane) {
+        this.y = lane * 200;
     }
 }
