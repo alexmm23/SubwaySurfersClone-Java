@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Random;
 
 public class Scenario extends JPanel implements KeyListener, ActionListener {
     private Player player;
@@ -20,12 +21,26 @@ public class Scenario extends JPanel implements KeyListener, ActionListener {
     public Scenario() {
         player = new Player("Player", 0, 0);
         player.setLane(currentLane);
-        obstacles = new Obstacle[10];
+        obstacles = new Obstacle[3];
         for (int i = 0; i < obstacles.length; i++) {
-            obstacles[i] = new Obstacle(0, 50, 0);
+            obstacles[i] = new Obstacle(800, 50, i % 3);
+        }
+        Random rand = new Random();
+        int visibleCount = 0;
+        while (visibleCount < 2) {
+            int index = rand.nextInt(obstacles.length);
+            if (!obstacles[index].isVisible()) {
+                obstacles[index].setVisible(true);
+                visibleCount++;
+            }
         }
         scoreLabel = new JLabel("Score: " + score);
-        timer = new Timer(1000, this);
+        timer = new Timer(16, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateGame();
+            }
+        });
         timer.start();
         add(scoreLabel);
         setFocusable(true);
@@ -35,15 +50,36 @@ public class Scenario extends JPanel implements KeyListener, ActionListener {
 
     public void updateGame() {
         player.setLane(currentLane);
-        if (timer.isRunning() && score % 10 == 0) {
-            speed += 20;
-        }
+        int visibleCount = 0;
+        Random rand = new Random();
         for (Obstacle obstacle : obstacles) {
+            if (obstacle.isVisible()) {
+                visibleCount++;
+            }
             obstacle.update(speed);
         }
-        score += timer.getDelay() / 100;
+        if (visibleCount < 2) {
+            int index = rand.nextInt(obstacles.length);
+            if (!obstacles[index].isVisible()) {
+                obstacles[index].setVisible(true);
+            }
+        }
+        if (checkCollision()) {
+            timer.stop();
+            JOptionPane.showMessageDialog(this, "Game Over! Your score is: " + score);
+        }
+        score++;
         scoreLabel.setText("Score: " + score);
         repaint();
+    }
+
+    private boolean checkCollision() {
+        for (Obstacle obstacle : obstacles) {
+            if (player.getX() < obstacle.getX() + 50 && player.getX() + 50 > obstacle.getX() && player.getY() < obstacle.getY() + 50 && player.getY() + 50 > obstacle.getY()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

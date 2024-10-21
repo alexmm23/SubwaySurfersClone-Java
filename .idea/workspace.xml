@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="707af57b-8fd0-4306-8c92-fbb29671732a" name="Changes" comment="Initial project structure">
+    <list default="true" id="707af57b-8fd0-4306-8c92-fbb29671732a" name="Changes" comment="Add score label and player movement to scenario">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Obstacle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Obstacle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Scenario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scenario.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +63,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1729472717607</updated>
-      <workItem from="1729472719047" duration="3701000" />
+      <workItem from="1729472719047" duration="5378000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project structure">
       <option name="closed" value="true" />
@@ -75,7 +73,31 @@
       <option name="project" value="LOCAL" />
       <updated>1729473913196</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Update obstacles speed">
+      <option name="closed" value="true" />
+      <created>1729477567641</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1729477567641</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Use setlane instead of move method">
+      <option name="closed" value="true" />
+      <created>1729477597624</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1729477597624</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Add score label and player movement to scenario">
+      <option name="closed" value="true" />
+      <created>1729477625307</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1729477625307</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -83,6 +105,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial project structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial project structure" />
+    <MESSAGE value="Update obstacles speed" />
+    <MESSAGE value="Use setlane instead of move method" />
+    <MESSAGE value="Add score label and player movement to scenario" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add score label and player movement to scenario" />
   </component>
 </project>
