@@ -27,7 +27,7 @@ public class Obstacle {
     }
 
     public void setLane(int lane) {
-        this.y = lane * 200;
+        this.y = lane * 200 + 50;
     }
 
     public int getX() {

@@ -32,6 +32,7 @@ public class Scenario extends JPanel implements KeyListener, ActionListener {
             if (!obstacles[index].isVisible()) {
                 obstacles[index].setVisible(true);
                 visibleCount++;
+                System.out.println("Visible count: " + visibleCount);
             }
         }
         scoreLabel = new JLabel("Score: " + score);
@@ -56,6 +57,12 @@ public class Scenario extends JPanel implements KeyListener, ActionListener {
             if (obstacle.isVisible()) {
                 visibleCount++;
             }
+            if (obstacle.getX() <= 0) {
+                System.out.println("Obstacle is not visible");
+                visibleCount--;
+                //obstacle.setVisible(false);
+                obstacle.setLane(rand.nextInt(1, 3));
+            }
             obstacle.update(speed);
         }
         if (visibleCount < 2) {
@@ -75,7 +82,7 @@ public class Scenario extends JPanel implements KeyListener, ActionListener {
 
     private boolean checkCollision() {
         for (Obstacle obstacle : obstacles) {
-            if (player.getX() < obstacle.getX() + 50 && player.getX() + 50 > obstacle.getX() && player.getY() < obstacle.getY() + 50 && player.getY() + 50 > obstacle.getY()) {
+            if (player.getX() < obstacle.getX() + 50 && player.getX() + 50 > obstacle.getX() && player.getY() < obstacle.getY() + 50 && player.getY() + 50 > obstacle.getY() && !player.isJumping()) {
                 return true;
             }
         }
@@ -110,7 +117,7 @@ public class Scenario extends JPanel implements KeyListener, ActionListener {
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_UP:
-                //jump
+                player.jump();
                 System.out.println("UP");
                 break;
             case KeyEvent.VK_RIGHT:
