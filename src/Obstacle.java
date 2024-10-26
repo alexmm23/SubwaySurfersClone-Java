@@ -4,12 +4,14 @@ public class Obstacle {
     private int x, y;
     private int lane;
     private boolean visible;
+    private Image image;
 
     public Obstacle(int x, int y, int lane) {
         this.x = x;
         this.y = y;
         this.lane = lane;
         this.visible = false;
+        this.image = Toolkit.getDefaultToolkit().getImage("src/assets/obstacle/train.png");
     }
 
     public void update(int speed) {
@@ -22,8 +24,9 @@ public class Obstacle {
     }
 
     public void draw(Graphics g) {
-        g.setColor(Color.BLUE);
-        g.fillRect(x, y, 50, 50);
+        if (visible) {
+            g.drawImage(image, x, y, null);
+        }
     }
 
     public void setLane(int lane) {
@@ -37,9 +40,11 @@ public class Obstacle {
     public int getY() {
         return y;
     }
+
     public boolean isVisible() {
         return visible;
     }
+
     public void setVisible(boolean visible) {
         this.visible = visible;
     }
