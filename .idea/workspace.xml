@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="707af57b-8fd0-4306-8c92-fbb29671732a" name="Changes" comment="Desaparecer coins cuando son tocados">
-      <change beforePath="$PROJECT_DIR$/src/Scenario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scenario.java" afterDir="false" />
-    </list>
+    <list default="true" id="707af57b-8fd0-4306-8c92-fbb29671732a" name="Changes" comment="Rotar jugador mientras salta" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -75,7 +73,7 @@
       <workItem from="1729516605000" duration="7532000" />
       <workItem from="1729688158290" duration="224000" />
       <workItem from="1729898975004" duration="6630000" />
-      <workItem from="1729961563402" duration="1670000" />
+      <workItem from="1729961563402" duration="2005000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project structure">
       <option name="closed" value="true" />
@@ -181,7 +179,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729963096738</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Rotar jugador mientras salta">
+      <option name="closed" value="true" />
+      <created>1729963499049</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1729963499049</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,6 +207,7 @@
     <MESSAGE value="Diseñar generacion aleatoriai de obstaculos y monedas" />
     <MESSAGE value="Añadir imagen a los obstaculos" />
     <MESSAGE value="Desaparecer coins cuando son tocados" />
-    <option name="LAST_COMMIT_MESSAGE" value="Desaparecer coins cuando son tocados" />
+    <MESSAGE value="Rotar jugador mientras salta" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rotar jugador mientras salta" />
   </component>
 </project>

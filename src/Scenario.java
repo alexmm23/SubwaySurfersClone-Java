@@ -87,12 +87,29 @@ public class Scenario extends JPanel implements KeyListener, ActionListener {
         if (checkCollision()) {
             timer.stop();
             JOptionPane.showMessageDialog(this, "Game Over! Your score is: " + score);
+            int option = JOptionPane.showConfirmDialog(this, "Do you want to play again?");
+            if (option == JOptionPane.YES_OPTION) {
+                restartGame();
+            } else {
+                System.exit(0);
+            }
+
         }
         score++;
         scoreLabel.setText("Score: " + score);
         repaint();
     }
 
+    private void restartGame() {
+        player = new Player("Player", 0, 0);
+        player.setLane(currentLane);
+        obstacles = new ArrayList<>();
+        coins = new ArrayList<>();
+        generateObstacles();
+        generateCoins();
+        score = 0;
+        timer.start();
+    }
 
     private boolean checkCollision() {
         for (Obstacle obstacle : obstacles) {
@@ -142,10 +159,19 @@ public class Scenario extends JPanel implements KeyListener, ActionListener {
             }
         }
 
-        g.setColor(Color.WHITE);
-        g.fillRect(0, 50, width, 100);
-        g.fillRect(0, 250, width, 100);
-        g.fillRect(0, 450, width, 100);
+        Graphics2D g2d = (Graphics2D) g;
+
+        GradientPaint gradient1 = new GradientPaint(0, 50, Color.WHITE, width, 150, Color.LIGHT_GRAY);
+        g2d.setPaint(gradient1);
+        g2d.fillRect(0, 50, width, 100);
+
+        GradientPaint gradient2 = new GradientPaint(0, 250, Color.WHITE, width, 350, Color.GRAY);
+        g2d.setPaint(gradient2);
+        g2d.fillRect(0, 250, width, 100);
+
+        GradientPaint gradient3 = new GradientPaint(0, 450, Color.WHITE, width, 550, Color.DARK_GRAY);
+        g2d.setPaint(gradient3);
+        g2d.fillRect(0, 450, width, 100);
 
         g.drawImage(railsImage, 0, 50, width, 100, null);
         g.drawImage(railsImage, 0, 250, width, 100, null);
