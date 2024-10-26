@@ -48,33 +48,39 @@ public class Scenario extends JPanel implements KeyListener, ActionListener {
     }
 
     private void generateObstacles() {
-        int numObstacles = rand.nextInt(3) + 1; // Random number of obstacles (1 to 3)
-        for (int i = 0; i < numObstacles; i++) {
-            int lane = rand.nextInt(3); // Random lane (0, 1, 2)
-            Obstacle obstacle = new Obstacle(width, lane * 200 + 50, lane);
-            obstacle.setVisible(true);
-            obstacles.add(obstacle);
-        }
+        int lane = rand.nextInt(3);
+        int xPos = width + 50; // Posición x cercana al borde derecho
+        Obstacle obstacle = new Obstacle(xPos, lane * 200 + 50, lane);
+        obstacles.add(obstacle);
     }
 
     private void generateCoins() {
-        int numCoins = rand.nextInt(3) + 1; // Random number of coins (1 to 3)
-        for (int i = 0; i < numCoins; i++) {
-            int lane = rand.nextInt(3); // Random lane (0, 1, 2)
-            Coin coin = new Coin(width, lane * 200 + 50);
-            coin.setVisible(true);
-            coins.add(coin);
-        }
+        int lane = rand.nextInt(3) + 1; // Carril aleatorio
+        int xPos = width + 50; // Posición x cercana al borde derecho
+        Coin coin = new Coin(xPos, lane * 200 + 50);
+        coins.add(coin);
     }
 
     public void updateGame() {
         player.setLane(currentLane);
+
+        // Mover obstáculos y monedas
         for (Obstacle obstacle : obstacles) {
             obstacle.update(speed);
+            obstacle.setVisible(true);
         }
         for (Coin coin : coins) {
             coin.update(speed);
+            coin.setVisible(true);
         }
+
+        if (rand.nextInt(100) < 2) {
+            generateObstacles();
+        }
+        if (rand.nextInt(100) < 15) {
+            generateCoins();
+        }
+
         if (checkCoinCollision()) {
             score += 100;
         }
@@ -86,6 +92,7 @@ public class Scenario extends JPanel implements KeyListener, ActionListener {
         scoreLabel.setText("Score: " + score);
         repaint();
     }
+
 
     private boolean checkCollision() {
         for (Obstacle obstacle : obstacles) {
