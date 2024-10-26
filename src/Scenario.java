@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Scenario extends JPanel implements KeyListener, ActionListener {
@@ -16,6 +17,8 @@ public class Scenario extends JPanel implements KeyListener, ActionListener {
     private int width = 800;
     private int height = 800;
     private int speed = 10;
+    private ArrayList<Coin> coins;
+    private Image railsImage;
 
 
     public Scenario() {
@@ -35,6 +38,10 @@ public class Scenario extends JPanel implements KeyListener, ActionListener {
                 System.out.println("Visible count: " + visibleCount);
             }
         }
+        coins = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            coins.add(new Coin(800, i * 200 + 50));
+        }
         scoreLabel = new JLabel("Score: " + score);
         timer = new Timer(16, new ActionListener() {
             @Override
@@ -47,6 +54,9 @@ public class Scenario extends JPanel implements KeyListener, ActionListener {
         setFocusable(true);
         requestFocusInWindow();
         addKeyListener(this);
+        //resizes the image to fit the screen
+
+        railsImage = Toolkit.getDefaultToolkit().getImage("src/assets/rieles.png");
     }
 
     public void updateGame() {
@@ -71,6 +81,12 @@ public class Scenario extends JPanel implements KeyListener, ActionListener {
                 obstacles[index].setVisible(true);
             }
         }
+        for (Coin coin : coins) {
+            coin.update(speed);
+        }
+        if (checkCoinCollision()) {
+            score += 10;
+        }
         if (checkCollision()) {
             timer.stop();
             JOptionPane.showMessageDialog(this, "Game Over! Your score is: " + score);
@@ -89,6 +105,15 @@ public class Scenario extends JPanel implements KeyListener, ActionListener {
         return false;
     }
 
+    private boolean checkCoinCollision() {
+        for (Coin coin : coins) {
+            if (player.getX() < coin.getX() + 50 && player.getX() + 50 > coin.getX() && player.getY() < coin.getY() + 50 && player.getY() + 50 > coin.getY()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -97,15 +122,26 @@ public class Scenario extends JPanel implements KeyListener, ActionListener {
         for (Obstacle obstacle : obstacles) {
             obstacle.draw(g);
         }
+        for (Coin coin : coins) {
+            coin.draw(g);
+        }
+
     }
 
     public void drawLanes(Graphics g) {
-        g.setColor(Color.BLACK);
+        g.setColor(Color.GRAY);
+        //Set the rieles.png image as the background
+        g.fillRect(0, 0, width, height);
+        g.setColor(Color.GRAY);
+
         g.fillRect(0, 50, width, height);
         g.setColor(Color.WHITE);
         g.fillRect(0, 50, width, 100);
         g.fillRect(0, 250, width, 100);
         g.fillRect(0, 450, width, 100);
+        g.drawImage(railsImage, 0, 50,width,100, null);
+        g.drawImage(railsImage, 0, 450,width,100, null);
+        g.drawImage(railsImage, 0, 250,width,100, null);
     }
 
     @Override
