@@ -65,9 +65,23 @@ public class Player {
     }
 
     public void draw(Graphics g) {
-        g.setColor(Color.RED);
-        g.drawImage(images[(int) (System.currentTimeMillis() % 2000 / 1000)], x, y, 60, 60, null);
+        Graphics2D g2d = (Graphics2D) g;
+
+        int imageIndex = (int) (System.currentTimeMillis() % 2000 / 1000); // Alterna entre las imágenes
+        int imageWidth = 60;
+        int imageHeight = 60;
+        if (isJumping) {
+            g2d.translate(x + imageWidth / 2, y + imageHeight / 2);
+            double rotationAngle = Math.toRadians(jumpStep * (360 / (JUMP_STEPS * 2)));
+            g2d.rotate(rotationAngle);
+            g2d.drawImage(images[imageIndex], -imageWidth / 2, -imageHeight / 2, imageWidth, imageHeight, null);
+            g2d.rotate(-rotationAngle);
+            g2d.translate(-(x + imageWidth / 2), -(y + imageHeight / 2));
+        } else {
+            g2d.drawImage(images[imageIndex], x, y, imageWidth, imageHeight, null);
+        }
     }
+
 
     public void setLane(int lane) {
         this.y = lane * 200 + 50;

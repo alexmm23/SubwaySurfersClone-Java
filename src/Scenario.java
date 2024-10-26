@@ -128,20 +128,30 @@ public class Scenario extends JPanel implements KeyListener, ActionListener {
     }
 
     public void drawLanes(Graphics g) {
-        g.setColor(Color.GRAY);
-        //Set the rieles.png image as the background
-        g.fillRect(0, 0, width, height);
-        g.setColor(Color.GRAY);
+        // Simula una textura de pavimento mediante pequeños puntos grises oscuros y claros
+        for (int x = 0; x < width; x += 10) {         // Ajusta el tamaño del patrón con el paso
+            for (int y = 0; y < height; y += 10) {
+                // Escoge aleatoriamente entre dos tonos de gris
+                if (Math.random() > 0.5) {
+                    g.setColor(new Color(105, 105, 105)); // Gris oscuro
+                } else {
+                    g.setColor(new Color(169, 169, 169)); // Gris claro
+                }
+                // Dibuja un pequeño rectángulo como parte del patrón
+                g.fillRect(x, y, 10, 10);   // Ajusta el tamaño del rectángulo (ancho y alto) para el efecto deseado
+            }
+        }
 
-        g.fillRect(0, 50, width, height);
         g.setColor(Color.WHITE);
         g.fillRect(0, 50, width, 100);
         g.fillRect(0, 250, width, 100);
         g.fillRect(0, 450, width, 100);
+
         g.drawImage(railsImage, 0, 50, width, 100, null);
-        g.drawImage(railsImage, 0, 450, width, 100, null);
         g.drawImage(railsImage, 0, 250, width, 100, null);
+        g.drawImage(railsImage, 0, 450, width, 100, null);
     }
+
 
     @Override
     public void keyTyped(KeyEvent e) {
