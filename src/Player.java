@@ -1,10 +1,18 @@
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Player {
     private int x, y;
     private String name;
     private boolean isJumping = false;
     private Image[] images;
+    private Timer jumpTimer;
+    private int jumpStep = 0;
+    private final int JUMP_HEIGHT = 200;
+    private final int JUMP_STEPS = 10;
+    private final int SLEEP_DURATION = 25;
 
 
     public Player(String name, int x, int y) {
@@ -37,33 +45,22 @@ public class Player {
     public void jump() {
         if (!isJumping) {
             isJumping = true;
-            Thread thread = new Thread(new Runnable() {
+            jumpStep = 0;
+            jumpTimer = new Timer(SLEEP_DURATION, new ActionListener() {
                 @Override
-                public void run() {
-                    final int JUMP_HEIGHT = 200;
-                    final int JUMP_STEPS = 10;
-                    final int SLEEP_DURATION = 25;
-
-                    for (int i = 0; i < JUMP_STEPS; i++) {
+                public void actionPerformed(ActionEvent e) {
+                    if (jumpStep < JUMP_STEPS) {
                         y -= JUMP_HEIGHT / JUMP_STEPS;
-                        try {
-                            Thread.sleep(SLEEP_DURATION);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    for (int i = 0; i < JUMP_STEPS; i++) {
+                    } else if (jumpStep < 2 * JUMP_STEPS) {
                         y += JUMP_HEIGHT / JUMP_STEPS;
-                        try {
-                            Thread.sleep(SLEEP_DURATION);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                    } else {
+                        jumpTimer.stop();
+                        isJumping = false;
                     }
-                    isJumping = false;
+                    jumpStep++;
                 }
             });
-            thread.start();
+            jumpTimer.start();
         }
     }
 

@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="707af57b-8fd0-4306-8c92-fbb29671732a" name="Changes" comment="Agregar rieles">
-      <change afterPath="$PROJECT_DIR$/src/Coin.java" afterDir="false" />
+    <list default="true" id="707af57b-8fd0-4306-8c92-fbb29671732a" name="Changes" comment="Mostrar coins">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scenario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scenario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +75,7 @@
       <workItem from="1729472719047" duration="6327000" />
       <workItem from="1729516605000" duration="7532000" />
       <workItem from="1729688158290" duration="224000" />
-      <workItem from="1729898975004" duration="4746000" />
+      <workItem from="1729898975004" duration="6630000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project structure">
       <option name="closed" value="true" />
@@ -141,7 +141,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729902658873</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Mostrar coins">
+      <option name="closed" value="true" />
+      <created>1729904024033</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1729904024033</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -156,6 +164,7 @@
     <MESSAGE value="Add player sprites" />
     <MESSAGE value="Fix obstacles issue and add jump logic" />
     <MESSAGE value="Agregar rieles" />
-    <option name="LAST_COMMIT_MESSAGE" value="Agregar rieles" />
+    <MESSAGE value="Mostrar coins" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mostrar coins" />
   </component>
 </project>
