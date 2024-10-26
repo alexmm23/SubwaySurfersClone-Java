@@ -9,7 +9,8 @@ import java.util.Random;
 
 public class Scenario extends JPanel implements KeyListener, ActionListener {
     private Player player;
-    private Obstacle[] obstacles;
+    private ArrayList<Obstacle> obstacles;
+    private ArrayList<Coin> coins;
     private int currentLane = 1; // 0, 1, 2
     private JLabel scoreLabel;
     private Timer timer;
@@ -17,31 +18,19 @@ public class Scenario extends JPanel implements KeyListener, ActionListener {
     private int width = 800;
     private int height = 800;
     private int speed = 10;
-    private ArrayList<Coin> coins;
     private Image railsImage;
-
+    private Random rand;
 
     public Scenario() {
         player = new Player("Player", 0, 0);
         player.setLane(currentLane);
-        obstacles = new Obstacle[3];
-        for (int i = 0; i < obstacles.length; i++) {
-            obstacles[i] = new Obstacle(800, 50, i % 3);
-        }
-        Random rand = new Random();
-        int visibleCount = 0;
-        while (visibleCount < 2) {
-            int index = rand.nextInt(obstacles.length);
-            if (!obstacles[index].isVisible()) {
-                obstacles[index].setVisible(true);
-                visibleCount++;
-                System.out.println("Visible count: " + visibleCount);
-            }
-        }
+        obstacles = new ArrayList<>();
         coins = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            coins.add(new Coin(800, i * 200 + 50));
-        }
+        rand = new Random();
+
+        generateObstacles();
+        generateCoins();
+
         scoreLabel = new JLabel("Score: " + score);
         timer = new Timer(16, new ActionListener() {
             @Override
@@ -54,38 +43,40 @@ public class Scenario extends JPanel implements KeyListener, ActionListener {
         setFocusable(true);
         requestFocusInWindow();
         addKeyListener(this);
-        //resizes the image to fit the screen
 
         railsImage = Toolkit.getDefaultToolkit().getImage("src/assets/rieles.png");
     }
 
+    private void generateObstacles() {
+        int numObstacles = rand.nextInt(3) + 1; // Random number of obstacles (1 to 3)
+        for (int i = 0; i < numObstacles; i++) {
+            int lane = rand.nextInt(3); // Random lane (0, 1, 2)
+            Obstacle obstacle = new Obstacle(width, lane * 200 + 50, lane);
+            obstacle.setVisible(true);
+            obstacles.add(obstacle);
+        }
+    }
+
+    private void generateCoins() {
+        int numCoins = rand.nextInt(3) + 1; // Random number of coins (1 to 3)
+        for (int i = 0; i < numCoins; i++) {
+            int lane = rand.nextInt(3); // Random lane (0, 1, 2)
+            Coin coin = new Coin(width, lane * 200 + 50);
+            coin.setVisible(true);
+            coins.add(coin);
+        }
+    }
+
     public void updateGame() {
         player.setLane(currentLane);
-        int visibleCount = 0;
-        Random rand = new Random();
         for (Obstacle obstacle : obstacles) {
-            if (obstacle.isVisible()) {
-                visibleCount++;
-            }
-            if (obstacle.getX() <= 0) {
-                System.out.println("Obstacle is not visible");
-                visibleCount--;
-                //obstacle.setVisible(false);
-                obstacle.setLane(rand.nextInt(1, 3));
-            }
             obstacle.update(speed);
-        }
-        if (visibleCount < 2) {
-            int index = rand.nextInt(obstacles.length);
-            if (!obstacles[index].isVisible()) {
-                obstacles[index].setVisible(true);
-            }
         }
         for (Coin coin : coins) {
             coin.update(speed);
         }
         if (checkCoinCollision()) {
-            score += 10;
+            score += 100;
         }
         if (checkCollision()) {
             timer.stop();
@@ -139,9 +130,9 @@ public class Scenario extends JPanel implements KeyListener, ActionListener {
         g.fillRect(0, 50, width, 100);
         g.fillRect(0, 250, width, 100);
         g.fillRect(0, 450, width, 100);
-        g.drawImage(railsImage, 0, 50,width,100, null);
-        g.drawImage(railsImage, 0, 450,width,100, null);
-        g.drawImage(railsImage, 0, 250,width,100, null);
+        g.drawImage(railsImage, 0, 50, width, 100, null);
+        g.drawImage(railsImage, 0, 450, width, 100, null);
+        g.drawImage(railsImage, 0, 250, width, 100, null);
     }
 
     @Override
