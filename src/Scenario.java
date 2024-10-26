@@ -106,6 +106,7 @@ public class Scenario extends JPanel implements KeyListener, ActionListener {
     private boolean checkCoinCollision() {
         for (Coin coin : coins) {
             if (player.getX() < coin.getX() + 50 && player.getX() + 50 > coin.getX() && player.getY() < coin.getY() + 50 && player.getY() + 50 > coin.getY()) {
+                coin.setVisible(false);
                 return true;
             }
         }

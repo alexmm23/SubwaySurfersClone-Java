@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="707af57b-8fd0-4306-8c92-fbb29671732a" name="Changes" comment="Reparar salto">
+    <list default="true" id="707af57b-8fd0-4306-8c92-fbb29671732a" name="Changes" comment="Diseñar generacion aleatoriai de obstaculos y monedas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Coin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Coin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Scenario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scenario.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -75,7 +76,7 @@
       <workItem from="1729516605000" duration="7532000" />
       <workItem from="1729688158290" duration="224000" />
       <workItem from="1729898975004" duration="6630000" />
-      <workItem from="1729961563402" duration="622000" />
+      <workItem from="1729961563402" duration="1349000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project structure">
       <option name="closed" value="true" />
@@ -157,7 +158,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729961681440</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Diseñar generacion aleatoriai de obstaculos y monedas">
+      <option name="closed" value="true" />
+      <created>1729962435946</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1729962435946</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -174,6 +183,7 @@
     <MESSAGE value="Agregar rieles" />
     <MESSAGE value="Mostrar coins" />
     <MESSAGE value="Reparar salto" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reparar salto" />
+    <MESSAGE value="Diseñar generacion aleatoriai de obstaculos y monedas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Diseñar generacion aleatoriai de obstaculos y monedas" />
   </component>
 </project>

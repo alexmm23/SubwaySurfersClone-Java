@@ -20,8 +20,10 @@ public class Coin {
     }
 
     public void draw(Graphics g) {
-        g.setColor(Color.YELLOW);
-        g.fillOval(x, y, 50, 50);
+        if (visible) {
+            g.setColor(Color.YELLOW);
+            g.fillOval(x, y, 25, 25);
+        }
     }
 
     public int getX() {
@@ -31,6 +33,7 @@ public class Coin {
     public int getY() {
         return y;
     }
+
     public void setLane(int lane) {
         this.y = lane * 200 + 50;
     }
